@@ -1,0 +1,103 @@
+.modal
+    display: flex
+    justify-content: center
+    align-items: center
+    position: fixed
+    z-index: 9000
+    left: 0
+    right: 0
+    bottom: 0
+    top: 0
+    visibility: hidden
+
+    &_visible
+        visibility: visible
+
+        .container
+            visibility: visible
+            opacity: 1
+            transform: translateY(0)
+
+        .overlay
+            visibility: visible
+            opacity: 1
+
+.container
+    position: relative
+    z-index: 9300
+    width: 720px
+    height: 360px
+    background-color: #fff
+    border-radius: 2px
+    box-shadow: 0 4px 10px rgba(30, 25, 32, 0.4)
+    box-sizing: border-box
+    transition: 250ms ease-in-out
+    visibility: hidden
+    opacity: 0
+    transform: translateY(10px)
+    display: flex
+
+.title
+    font-size: 16px
+    text-align: center
+
+.side
+    flex: 1 0 50%
+    position: relative
+    overflow: hidden
+    box-sizing: border-box
+    padding: 30px 20px
+    text-align: center
+
+    &_left
+        background-color: rgba(30, 25, 32, 0.05)
+        border-radius: 2px 0 0 2px
+
+    &_in
+        justify-content: space-between
+        align-items: center
+        display: flex
+        flex-direction: column
+        height: 100%
+
+    &_center
+        justify-content: center
+
+.text
+    font-size: 16px
+    margin: 8px 0
+
+.phone
+    font-size: 24px
+    margin: 0
+
+.form
+    margin: 0 auto
+
+.overlay
+    position: absolute
+    z-index: 9200
+    width: 100%
+    height: 100%
+    background-color: rgba(30, 25, 32, 0.8)
+    opacity: 0
+    visibility: hidden
+    transition: 250ms ease-in-out
+    cursor: pointer
+
+    &:hover:after
+        opacity: 1
+
+    &:after
+        content: ''
+        position: absolute
+        top: 20px
+        right: 20px
+        width: 34px
+        height: 34px
+        transition: 250ms ease-in-out
+        background-image: svg('close', '[fill]:#fff')
+        background-repeat: no-repeat
+        background-size: 100%
+        background-position: 0 50%
+        opacity: .5

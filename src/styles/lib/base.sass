@@ -1,0 +1,15 @@
+@import 'animation'
+
+.main
+    font: 14px/1.5 'Roboto', Arial, sans-serif
+    text-rendering: optimizeLegibility
+
+.floatButton
+    position: fixed
+    right: 20px
+    bottom: 20px
+    z-index: 1000
+
+    button
+        transform: scale(0)
+        animation: float-scale 250ms 250ms ease-in-out forwards

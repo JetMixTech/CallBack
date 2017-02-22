@@ -1,0 +1,89 @@
+.input
+    $block: &
+    position: relative
+    margin-bottom: 24px
+
+    &_required
+        &:before,
+        &:after
+            content: ''
+            position: absolute
+            z-index: 100
+            top: 0
+            bottom: 0
+            pointer-events: none
+            transition: 250ms ease-in-out
+
+        &:before
+            right: 9px
+            margin: auto
+            width: 16px
+            height: 16px
+            background-image: svg('done', '[fill]:#00cd8d')
+            background-repeat: no-repeat
+            background-size: 100%
+            background-position: 0 50%
+            transform: translateY(6px)
+            opacity: 0
+            visibility: hidden
+
+        &:after
+            right: 14px
+            margin: auto
+            background-color: #ea212d
+            width: 6px
+            height: 6px
+            border-radius: 50%
+
+    &_valid
+        &:before
+            transform: translateY(0)
+            opacity: 1
+            visibility: visible
+
+        &:after
+            transform: translateY(-6px)
+            opacity: 0
+            visibility: hidden
+
+.control
+    border: 1px solid #1E1920
+    color: #1E1920
+    border-radius: 2px
+    padding: 0 14px
+    height: 42px
+    font: inherit
+    font-size: 14px
+    position: relative
+    box-sizing: border-box
+    width: 100%
+    transition: 150ms ease-in-out
+
+    &:focus
+        outline: 0
+        border-color: rgba(30, 25, 32, 0.3)
+
+    &::placeholder
+        color: rgba(30, 25, 32, 0.3)
+
+.label
+    display: block    
+
+.labelText
+    position: absolute
+    z-index: 100
+    left: 14px
+    top: -8px
+    font-size: 12px
+    padding: 0 4px
+    transition: 150ms ease-in-out
+
+    &:before
+        content: ''
+        height: 1px
+        width: 100%
+        background-color: #fff
+        position: absolute
+        top: 8px
+        left: 0
+        z-index: -1

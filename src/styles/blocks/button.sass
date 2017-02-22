@@ -1,0 +1,41 @@
+.button
+    width: 310px
+    height: 42px
+    border-radius: 2px
+    border: none
+    cursor: pointer
+    background-image: linear-gradient(45deg, #EA212D 0%, #FC7D44 100%)
+    transition: 250ms ease-in-out
+    color: #fff
+    box-sizing: border-box
+    padding: 0 14px
+
+    &:focus
+        outline: 0
+
+    &:focus:not(.button_disabled),
+    &:hover:not(.button_disabled)
+        transform: translateY(-4px)
+        box-shadow: 0 6px 20px -4px rgba(30, 25, 32, 0.4)
+
+    &_disabled
+        opacity: .25
+        cursor: default
+
+.float
+    width: 56px
+    height: 56px
+    border-radius: 50%
+    box-shadow: 0 4px 10px -2px rgba(30, 25, 32, 0.4)
+
+.in
+    display: flex
+    justify-content: center
+    align-items: center
+
+.text
+    line-height: 42px
+    font-size: 14px
+
+    &_shifted
+        margin-left: 16px

@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>CallBack Widget</title>
+</head>
+<body>
+    <script src="callback.js"></script>
+    <script>
+        const callBackConfig = {
+            companyName: 'Another company',
+            companyMail: 'faker@domain.com',
+            companySite: 'Another.domain',
+            companyPhone: '+7 (900) 00-00-00',
+            sendToTMService: {
+                enabled: false,
+                token: null
+            }
+        };
+        const callBack = new JMCallBack(callBackConfig);
+    </script>
+</body>
+</html>

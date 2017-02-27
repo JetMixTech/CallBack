@@ -6,11 +6,18 @@ import Application from 'js/containers/application';
 
 class JMCallBack {
     constructor(config) {
-        this.config = config;
+        this.config = {
+            ...config,
+            endpoints: {
+                ticket: 'https://api.jetmix.su/v1/tickets',
+                sender: 'https://sender.jetmix.su'
+            }
+        };
         this.validateConfig();
         this.createRootElement();
         this.setToken();
         this.mountApplication();
+        this.enableHMR();
     }
 
     validateConfig() {
@@ -37,6 +44,14 @@ class JMCallBack {
         render((
             <Application config={ this.config } />
         ), document.getElementById('callback-root'));
+    }
+
+    enableHMR() {
+        if (process.env.NODE_ENV === 'development' && module.hot) {
+            module.hot.accept('js/containers/application', () => {
+                this.mountApplication();
+            });
+        }
     }
 }
 

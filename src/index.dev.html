@@ -5,7 +5,10 @@
     <title>CallBack Widget</title>
 </head>
 <body>
-    <script src="callback.js"></script>
+    <div class="main">
+        <button class="js-callback">Open CallBack modal</button>
+    </div>
+    <script src="bundle.js"></script>
     <script>
         const callBackConfig = {
             companyName: 'Another company',
@@ -15,7 +18,8 @@
             sendToTMService: {
                 enabled: false,
                 token: null
-            }
+            },
+            triggerBy: '.js-callback'
         };
         const callBack = new JMCallBack(callBackConfig);
     </script>

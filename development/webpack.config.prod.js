@@ -6,8 +6,9 @@ const { UglifyJsPlugin } = optimize;
 module.exports = {
     entry: join(__dirname, '../src/js/index.js'),
     output: {
-        filename: 'callback.min.js',
-        path: join(__dirname, '../build')
+        filename: 'bundle.min.js',
+        path: join(__dirname, '../build/assets'),
+        publicPath: 'https://cdn.jetmix.su/callback'
     },
     module: {
         rules: [
@@ -17,9 +18,14 @@ module.exports = {
                     'style-loader',
                     'css-loader?modules&importLoaders=1&localIdentName=[hash:base64:5]',
                     'csso-loader',
+                    'resolve-url-loader',
                     'postcss-loader',
                     'sass-loader'
                 ]
+            },
+            {
+                test: /\.(png|jpg)$/,
+                loader: 'file-loader?name=/i/[hash].[ext]'
             },
             {
                 test: /\.js$/,

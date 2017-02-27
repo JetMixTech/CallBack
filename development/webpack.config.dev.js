@@ -1,11 +1,14 @@
 const { join } = require('path');
-const { NoEmitOnErrorsPlugin, DefinePlugin, LoaderOptionsPlugin } = require('webpack');
+const { HotModuleReplacementPlugin, NoEmitOnErrorsPlugin, DefinePlugin, LoaderOptionsPlugin } = require('webpack');
 
 module.exports = {
     devtool: 'cheap-module-source-map',
-    entry: join(__dirname, '../src/js/index.js'),
+    entry: [
+        'webpack-hot-middleware/client',
+        join(__dirname, '../src/js/index.js')
+    ],
     output: {
-        filename: 'callback.js',
+        filename: 'bundle.js',
         path: join(__dirname, '../build')
     },
     module: {
@@ -15,9 +18,14 @@ module.exports = {
                 loaders: [
                     'style-loader',
                     'css-loader?modules&importLoaders=1&localIdentName=[name]__[local]__[hash:base64:5]',
+                    'resolve-url-loader',
                     'postcss-loader',
                     'sass-loader'
                 ]
+            },
+            {
+                test: /\.(png|jpg)$/,
+                loader: 'file-loader?name=[name].[ext]'
             },
             {
                 test: /\.js$/,
@@ -34,6 +42,7 @@ module.exports = {
         ]
     },
     plugins: [
+        new HotModuleReplacementPlugin(),
         new NoEmitOnErrorsPlugin(),
         new LoaderOptionsPlugin({
             minimize: true,

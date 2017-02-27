@@ -10,6 +10,16 @@ class Application extends Component {
         this.openModal = this.openModal.bind(this);
     }
 
+    componentDidMount() {
+        if (this.props.config.triggerBy) {
+            document.addEventListener('click', (event) => {
+                if (event.target.matches(this.props.config.triggerBy)) {
+                    this.openModal();
+                }
+            });
+        }
+    }
+
     openModal() {
         this.modal.open();
     }

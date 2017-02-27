@@ -50,7 +50,7 @@ class Modal extends Component {
                 comment: `Телефон: ${formData.phone}, Удобное время для звонка: ${formData.time}`
             };
 
-            http.post('https://api.jetmix.su/v1/tickets', serviceData);
+            http.post(this.props.config.endpoints.ticket, serviceData);
         }
 
         const senderData = {
@@ -58,7 +58,7 @@ class Modal extends Component {
             payload: { ...formData, location: location.href }
         };
 
-        http.post('https://sender.jetmix.su', senderData)
+        http.post(this.props.config.endpoints.sender, senderData)
             .then((response) => {
                 if (response.success) {
                     this.form.unsetSubmitting();
@@ -79,12 +79,12 @@ class Modal extends Component {
                     <div className={ CN(styles.side, styles.side_left) }>
                         <div className={ CN(styles.side_in, styles.side_center) }>
                             <p className={ styles.text }>
-                                Готовы ответить на любые технические вопросы по телефону:
+                                Мы готовы ответить на любые ваши технические вопросы по телефону:
                             </p>
                             <p className={ styles.phone }>{ config.companyPhone }</p>
                         </div>
                     </div>
-                    <div className={ styles.side }>
+                    <div className={ CN(styles.side, styles.side_right) }>
                         { isSent ? (
                             <div className={ CN(styles.side_in, styles.side_center) }>
                                 <Icon view="rocket" />

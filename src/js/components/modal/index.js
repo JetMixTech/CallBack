@@ -80,10 +80,12 @@ class Modal extends Component {
                 <div className={ styles.container }>
                     <div className={ CN(styles.side, styles.side_left) }>
                         <div className={ CN(styles.side_in, styles.side_center) }>
-                            <p className={ styles.text }>
-                                Мы готовы ответить на любые ваши технические вопросы по телефону:
-                            </p>
-                            <p className={ styles.phone }>{ config.companyPhone }</p>
+                            <div className={ styles.center }>
+                                <p className={ styles.text }>
+                                    Мы готовы ответить на любые ваши технические вопросы по телефону:
+                                </p>
+                                <p className={ styles.phone }>{ config.companyPhone }</p>
+                            </div>
                             <p className={ styles.copyright }>
                                 { this.props.config.companyName } &copy; { year }
                             </p>

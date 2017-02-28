@@ -5,7 +5,7 @@ CallBack modal widget
 ```html
 <script src="https://cdn.jetmix.su/callback/js/bundle.min.js"></script>
 <script>
-    (function() {
+    (function () {
         var callBackConfig = {
             companyName: 'Another company',
             companyMail: 'faker@domain.com',

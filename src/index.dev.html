@@ -10,18 +10,21 @@
     </div>
     <script src="bundle.js"></script>
     <script>
-        const callBackConfig = {
-            companyName: 'Another company',
-            companyMail: 'faker@domain.com',
-            companySite: 'Another.domain',
-            companyPhone: '+7 (900) 00-00-00',
-            sendToTMService: {
-                enabled: false,
-                token: null
-            },
-            triggerBy: '.js-callback'
-        };
-        const callBack = new JMCallBack(callBackConfig);
+        (function() {
+            var callBackConfig = {
+                companyName: 'Another company',
+                companyMail: 'faker@domain.com',
+                companySite: 'Another.domain',
+                companyPhone: '+7 (900) 00-00-00',
+                sendToTMService: {
+                    enabled: false,
+                    token: null
+                },
+                theme: 'winter',
+                triggerBy: '.js-callback'
+            };
+            var callBack = new JMCallBack(callBackConfig);
+        }());
     </script>
 </body>
 </html>

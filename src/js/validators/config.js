@@ -18,6 +18,12 @@ export function validateConfig(config) {
             errors.push('sendToTMService.token');
         }
     }
+    if (config.theme) {
+        const themes = ['summer', 'winter', 'autumn'];
+        if (!~themes.indexOf(config.theme)) {
+            errors.push(`Available themes: ${themes.join(', ')}`);
+        }
+    }
 
     return errors;
 }

@@ -1,6 +1,7 @@
 const { join } = require('path');
 const express = require('express');
 const webpack = require('webpack');
+
 const webpackHotMiddleware = require('webpack-hot-middleware');
 const webpackDevMiddleware = require('webpack-dev-middleware');
 const config = require('./webpack.config.dev');

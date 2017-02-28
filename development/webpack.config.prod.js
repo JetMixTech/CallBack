@@ -6,8 +6,8 @@ const { UglifyJsPlugin } = optimize;
 module.exports = {
     entry: join(__dirname, '../src/js/index.js'),
     output: {
-        filename: 'bundle.min.js',
-        path: join(__dirname, '../build/assets'),
+        filename: 'js/bundle.min.js',
+        path: join(__dirname, '../build'),
         publicPath: 'https://cdn.jetmix.su/callback'
     },
     module: {

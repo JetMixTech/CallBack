@@ -72,6 +72,8 @@ class Modal extends Component {
 
     render() {
         const { sendEmail, close, props: { config }, state: { visible, isSent } } = this;
+        const date = new Date();
+        const year = date.getFullYear();
 
         return (
             <div className={ CN(styles.modal, { [styles.modal_visible]: visible }) }>
@@ -82,6 +84,9 @@ class Modal extends Component {
                                 Мы готовы ответить на любые ваши технические вопросы по телефону:
                             </p>
                             <p className={ styles.phone }>{ config.companyPhone }</p>
+                            <p className={ styles.copyright }>
+                                { this.props.config.companyName } &copy; { year }
+                            </p>
                         </div>
                     </div>
                     <div className={ CN(styles.side, styles.side_right) }>
@@ -120,7 +125,11 @@ class Modal extends Component {
                                             placeholder="Сегодня, завтра, в течении часа"
                                             required
                                         />
-                                        <Button icon="callback" text="Перезвонить мне" />
+                                        <Button
+                                            icon="callback"
+                                            text="Перезвонить мне"
+                                            theme={ this.props.config.theme }
+                                        />
                                     </Form>
                                 </div>
                             </div>

@@ -8,10 +8,15 @@ import { http } from 'js/utils';
 class Modal extends Component {
     constructor() {
         super();
-        this.state = { visible: false, isSent: false };
+        this.state = {
+            side: 'left',
+            visible: false,
+            isSent: false
+        };
         this.close = this.close.bind(this);
-        this.closeOnEsc = this.closeOnEsc.bind(this);
         this.sendEmail = this.sendEmail.bind(this);
+        this.closeOnEsc = this.closeOnEsc.bind(this);
+        this.changeSide = this.changeSide.bind(this);
     }
 
     componentDidMount() {
@@ -34,7 +39,7 @@ class Modal extends Component {
 
     close() {
         this.form && this.form.reset();
-        this.setState({ visible: false });
+        this.setState({ side: 'left', visible: false });
     }
 
     sendEmail() {
@@ -70,15 +75,20 @@ class Modal extends Component {
         this.form.setSubmitting();
     }
 
+    changeSide() {
+        this.setState({
+            side: this.state.side === 'left' ? 'right' : 'left'
+        });
+    }
+
     render() {
-        const { sendEmail, close, props: { config }, state: { visible, isSent } } = this;
-        const date = new Date();
-        const year = date.getFullYear();
+        const { side, visible, isSent } = this.state;
+        const { config } = this.props;
 
         return (
             <div className={ CN(styles.modal, { [styles.modal_visible]: visible }) }>
                 <div className={ styles.container }>
-                    <div className={ CN(styles.side, styles.side_left) }>
+                    <div className={ CN(styles.side, styles.side_left, { [styles.side_visible]: side === 'left' }) }>
                         <div className={ CN(styles.side_in, styles.side_center) }>
                             <div className={ styles.center }>
                                 <p className={ styles.text }>
@@ -86,16 +96,21 @@ class Modal extends Component {
                                 </p>
                                 <p className={ styles.phone }>{ config.companyPhone }</p>
                             </div>
-                            <p className={ styles.copyright }>
-                                { this.props.config.companyName } &copy; { year }
-                            </p>
+                            <div className={ styles.callbackButton }>
+                                <Button
+                                    icon="callback"
+                                    text="Заказать звонок"
+                                    view="secondary"
+                                    onClick={ this.changeSide }
+                                />
+                            </div>
                         </div>
                     </div>
-                    <div className={ CN(styles.side, styles.side_right) }>
+                    <div className={ CN(styles.side, styles.side_right, { [styles.side_visible]: side === 'right' }) }>
                         { isSent ? (
                             <div className={ CN(styles.side_in, styles.side_center) }>
-                                <Icon view="rocket" />
-                                <p className={ styles.text }>
+                                <Icon view="success" />
+                                <p className={ CN(styles.text, styles.text_offset) }>
                                     Ваш запрос был успешно отправлен, ожидайте звонка от нашего оператора!
                                 </p>
                             </div>
@@ -105,7 +120,7 @@ class Modal extends Component {
                                     Укажите ваши контакты и наш звонок не заставит себя ждать
                                 </div>
                                 <div className={ styles.form }>
-                                    <Form onSubmit={ sendEmail } ref={ (form) => { this.form = form; } }>
+                                    <Form onSubmit={ this.sendEmail } ref={ (form) => { this.form = form; } }>
                                         <Input
                                             type="text"
                                             name="customer"
@@ -138,7 +153,7 @@ class Modal extends Component {
                         ) }
                     </div>
                 </div>
-                <div className={ styles.overlay } onClick={ close }></div>
+                <div className={ styles.overlay } onClick={ this.close }></div>
             </div>
         );
     }

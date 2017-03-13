@@ -1,13 +1,14 @@
 .button
-    width: 310px
+    width: 100%
     height: 42px
     border-radius: 2px
     border: none
     cursor: pointer
     transition: 250ms ease-in-out
-    color: #fff
     box-sizing: border-box
     padding: 0 14px
+    user-select: none
+    -webkit-tap-highlight-color: transparent
 
     &:focus
         outline: 0
@@ -42,12 +43,21 @@
     &:active, &:hover
         background-color: #d93030
 
+.secondary
+    background-color: rgba(#fff, 0.3)
+
+    &:focus,
+    &:hover
+        background-color: rgba(#fff, 0.5)
+
 .in
     display: flex
     justify-content: center
     align-items: center
 
 .text
+    color: #fff
+    font: inherit
     line-height: 42px
     font-size: 14px
 

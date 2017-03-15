@@ -17,14 +17,17 @@ class Modal extends Component {
         this.sendEmail = this.sendEmail.bind(this);
         this.closeOnEsc = this.closeOnEsc.bind(this);
         this.changeSide = this.changeSide.bind(this);
+        this.containerAnimationEnd = this.containerAnimationEnd.bind(this);
     }
 
     componentDidMount() {
         document.addEventListener('keyup', this.closeOnEsc);
+        this.container.addEventListener('transitionend', this.containerAnimationEnd);
     }
 
     componentWillUnmount() {
         document.removeEventListener('keyup', this.closeOnEsc);
+        this.container.removeEventListener('transitionend', this.containerAnimationEnd);
     }
 
     closeOnEsc(event) {
@@ -39,7 +42,13 @@ class Modal extends Component {
 
     close() {
         this.form && this.form.reset();
-        this.setState({ side: 'left', visible: false });
+        this.setState({ visible: false });
+    }
+
+    containerAnimationEnd() {
+        if (!this.state.visible) {
+            this.setState({ side: 'left' });
+        }
     }
 
     sendEmail() {
@@ -87,7 +96,7 @@ class Modal extends Component {
 
         return (
             <div className={ CN(styles.modal, { [styles.modal_visible]: visible }) }>
-                <div className={ styles.container }>
+                <div className={ styles.container } ref={ (container) => { this.container = container; } }>
                     <div className={ CN(styles.side, styles.side_left, { [styles.side_visible]: side === 'left' }) }>
                         <div className={ CN(styles.side_in, styles.side_center) }>
                             <div className={ styles.center }>

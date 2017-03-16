@@ -36,7 +36,7 @@ class JMCallBack {
     }
 
     setToken() {
-        if (this.config.sendToTMService.enabled) {
+        if (this.config.sendToTMService && this.config.sendToTMService.enabled) {
             localStorage.setItem('callback-token', this.config.sendToTMService.token);
         }
     }

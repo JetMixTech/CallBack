@@ -28,9 +28,11 @@ class Application extends Component {
         return (
             <div className={ styles.main }>
                 <Modal ref={ (modal) => { this.modal = modal; } } config={ this.props.config } />
-                <div className={ styles.floatButton }>
-                    <Button icon="call" view="float" theme={ this.props.config.theme } onClick={ this.openModal } />
-                </div>
+                { this.props.config.enableFloatButton && (
+                    <div className={ styles.floatButton }>
+                        <Button icon="call" view="float" theme={ this.props.config.theme } onClick={ this.openModal } />
+                    </div>
+                ) }
             </div>
         );
     }

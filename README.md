@@ -16,7 +16,8 @@ CallBack modal widget
                 token: null
             },
             theme: 'winter',
-            triggerBy: '.js-callback'
+            triggerBy: '.js-callback',
+            enableFloatButton: false
         };
         var callBack = new JMCallBack(callBackConfig);
     }());
@@ -35,6 +36,7 @@ CallBack modal widget
   * token: JSON web token (if last option is enabled then needed token)
 * theme: winter | summer | autumn (button styles)
 * triggerBy: CSS Selector (open modal by click at them)
+* enableFloatButton: true | false (enable float button)
 
 ## Development
 ```shell

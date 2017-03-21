@@ -10,12 +10,12 @@ function Input({ type, name, label, meta, placeholder, mask, onChange, required 
         [styles.input_valid]: meta[name].touched && !meta[name].invalid
     });
     const inputProps = {
-        type, name, placeholder, onChange, id: name, className: styles.control, value: meta[name].value
+        type, name, placeholder, onChange, className: styles.control, value: meta[name].value
     };
 
     return (
         <div className={ inputCN }>
-            <label className={ styles.label } htmlFor={ name }>
+            <label className={ styles.label }>
                 { mask ? (
                     <MaskedInput mask={ mask } { ...inputProps } />
                 ) : (

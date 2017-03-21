@@ -54,7 +54,7 @@ class Modal extends Component {
     sendEmail() {
         const formData = this.form.getData();
 
-        if (this.props.config.sendToTMService.enabled) {
+        if (this.props.config.sendToTMService && this.props.config.sendToTMService.enabled) {
             const serviceData = {
                 name: formData.customer,
                 date: Date.now(),
@@ -148,7 +148,7 @@ class Modal extends Component {
                                             type="text"
                                             name="time"
                                             label="Удобное время для вас"
-                                            placeholder="Сегодня, завтра, в течении часа"
+                                            placeholder="Сегодня, завтра, в течение часа"
                                             required
                                         />
                                         <Button

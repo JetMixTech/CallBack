@@ -57,7 +57,8 @@
         "brace-style": ["error", "1tbs", { "allowSingleLine": true }],
         "indent": [1, 4],
         "comma-dangle": ["error", "never"],
-        "no-bitwise": ["error", { "allow": ["~"] }]
+        "no-bitwise": ["error", { "allow": ["~"] }],
+        "jsx-a11y/label-has-for": 0
     },
     "parser": "babel-eslint",
     "settings": {

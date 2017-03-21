@@ -11,7 +11,7 @@ class JMCallBack {
                 ticket: 'https://api.jetmix.su/v1/tickets',
                 sender: 'https://sender.jetmix.su'
             },
-            enableFloatButton: true,
+            disableFloatButton: false,
             ...config
         };
         this.validateConfig();

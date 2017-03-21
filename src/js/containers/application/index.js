@@ -8,15 +8,31 @@ class Application extends Component {
     constructor() {
         super();
         this.openModal = this.openModal.bind(this);
+        this.openModalByTriggerSelector = this.openModalByTriggerSelector.bind(this);
     }
 
     componentDidMount() {
         if (this.props.config.triggerBy) {
-            document.addEventListener('click', (event) => {
-                if (event.target.matches(this.props.config.triggerBy)) {
-                    this.openModal();
-                }
-            });
+            document.addEventListener('click', this.openModalByTriggerSelector);
+        }
+    }
+
+    componentWillUnmount() {
+        if (this.props.config.triggerBy) {
+            document.removeEventListener('click', this.openModalByTriggerSelector);
+        }
+    }
+
+    openModalByTriggerSelector(event) {
+        let { target } = event;
+
+        while (target !== document.documentElement) {
+            if (target.matches(this.props.config.triggerBy)) {
+                this.openModal();
+                break;
+            }
+
+            target = target.parentNode;
         }
     }
 
@@ -28,7 +44,7 @@ class Application extends Component {
         return (
             <div className={ styles.main }>
                 <Modal ref={ (modal) => { this.modal = modal; } } config={ this.props.config } />
-                { this.props.config.enableFloatButton && (
+                { !this.props.config.disableFloatButton && (
                     <div className={ styles.floatButton }>
                         <Button icon="call" view="float" theme={ this.props.config.theme } onClick={ this.openModal } />
                     </div>

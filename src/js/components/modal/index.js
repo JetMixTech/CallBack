@@ -25,6 +25,20 @@ class Modal extends Component {
         this.container.addEventListener('transitionend', this.containerAnimationEnd);
     }
 
+    shouldComponentUpdate(nextProps, nextState) {
+        return this.state.side !== nextState.side
+            || this.state.visible !== nextState.visible
+            || this.state.isSent !== nextState.isSent;
+    }
+
+    componentWillUpdate(nextProps, nextState) {
+        if (nextState.visible) {
+            document.body.style.overflow = 'hidden';
+        } else {
+            document.body.style.overflow = null;
+        }
+    }
+
     componentWillUnmount() {
         document.removeEventListener('keyup', this.closeOnEsc);
         this.container.removeEventListener('transitionend', this.containerAnimationEnd);
@@ -101,7 +115,7 @@ class Modal extends Component {
                         <div className={ CN(styles.side_in, styles.side_center) }>
                             <div className={ styles.center }>
                                 <p className={ styles.text }>
-                                    Мы готовы ответить на любые ваши технические вопросы по телефону:
+                                    { config.textBoard }
                                 </p>
                                 <p className={ styles.phone }>{ config.companyPhone }</p>
                             </div>

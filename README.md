@@ -37,6 +37,7 @@ CallBack modal widget
 * theme: winter | summer | autumn (button styles)
 * triggerBy: CSS Selector (open modal by click at them)
 * disableFloatButton: true | false (disable float button)
+* textBoard: custom text at left side
 
 ## Development
 ```shell

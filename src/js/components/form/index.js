@@ -89,9 +89,9 @@ class Form extends Component {
         return children.map((item, key) => {
             let itemProps = null;
 
-            if (item.type.name === 'Input') {
+            if (item.type.displayName === 'Input') {
                 itemProps = { meta: fields, onChange, key };
-            } else if (item.type.name === 'Button') {
+            } else if (item.type.displayName === 'Button') {
                 itemProps = { disabled: disableSubmit || submitting, key };
             }
 

@@ -10,8 +10,14 @@ const Input = ({ type, name, label, meta, placeholder, mask, onChange, required 
         [styles.input_required]: required,
         [styles.input_valid]: meta[name].touched && !meta[name].invalid
     });
+
     const inputProps = {
-        type, name, placeholder, onChange, className: styles.control, value: meta[name].value
+        type,
+        name,
+        placeholder,
+        onChange,
+        className: styles.control,
+        value: meta[name].value
     };
 
     return (

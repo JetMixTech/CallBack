@@ -39,7 +39,10 @@ module.exports = {
         modules: [
             join(__dirname, '../src'),
             join(__dirname, '../node_modules')
-        ]
+        ],
+        alias: {
+            i: join(__dirname, '../src/i')
+        }
     },
     plugins: [
         new HotModuleReplacementPlugin(),

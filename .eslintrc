@@ -47,7 +47,7 @@
         "generator-star-spacing": ["error", { "after": true, "before": false }],
         "react/jsx-no-duplicate-props": ["error"],
         "react/jsx-no-bind": ["error", { "ignoreRefs": true }],
-        "react/jsx-space-before-closing": [1, "always"],
+        "react/jsx-tag-spacing": [2, { "beforeSelfClosing": "always" }],
         "react/no-unused-prop-types": 0,
         "no-multiple-empty-lines": [1, { "max": 2 }],
         "no-mixed-operators": 0,

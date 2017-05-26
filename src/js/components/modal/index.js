@@ -14,11 +14,6 @@ class Modal extends Component {
             visible: false,
             isSent: false
         };
-        this.close = this.close.bind(this);
-        this.sendEmail = this.sendEmail.bind(this);
-        this.closeOnEsc = this.closeOnEsc.bind(this);
-        this.changeSide = this.changeSide.bind(this);
-        this.containerAnimationEnd = this.containerAnimationEnd.bind(this);
     }
 
     componentDidMount() {
@@ -45,28 +40,28 @@ class Modal extends Component {
         this.container.removeEventListener('transitionend', this.containerAnimationEnd);
     }
 
-    closeOnEsc(event) {
+    closeOnEsc = (event) => {
         if (event.keyCode === 27) {
             this.close();
         }
-    }
+    };
 
     open() {
         this.setState({ visible: true, isSent: false });
     }
 
-    close() {
+    close = () => {
         this.form && this.form.reset();
         this.setState({ visible: false });
-    }
+    };
 
-    containerAnimationEnd() {
+    containerAnimationEnd = () => {
         if (!this.state.visible) {
             this.setState({ side: 'left' });
         }
-    }
+    };
 
-    sendEmail() {
+    sendEmail = () => {
         const formData = this.form.getData();
 
         if (this.props.config.sendToTMService && this.props.config.sendToTMService.enabled) {
@@ -97,13 +92,13 @@ class Modal extends Component {
             });
 
         this.form.setSubmitting();
-    }
+    };
 
-    changeSide() {
+    changeSide = () => {
         this.setState({
             side: this.state.side === 'left' ? 'right' : 'left'
         });
-    }
+    };
 
     render() {
         const { side, visible, isSent } = this.state;
@@ -141,7 +136,7 @@ class Modal extends Component {
                         ) : (
                             <div className={ styles.side_in }>
                                 <div className={ styles.title }>
-                                    Укажите ваши контакты и наш звонок не заставит себя ждать
+                                    { config.title }
                                 </div>
                                 <div className={ styles.form }>
                                     <Form onSubmit={ this.sendEmail } ref={ (form) => { this.form = form; } }>
@@ -164,7 +159,6 @@ class Modal extends Component {
                                             name="time"
                                             label="Удобное время для вас"
                                             placeholder="Сегодня, завтра, в течение часа"
-                                            required
                                         />
                                         <Button
                                             icon="callback"

@@ -24,20 +24,19 @@ CallBack modal widget
 </script>
 ```
 ## Configure
-### Required props:
-* companyName
-* companyMail
-* companySite
-* companyPhone
-
-### Other props:
-* sendToTMService
-  * enabled: true | false (enabled send to TM service)
-  * token: JSON web token (if last option is enabled then needed token)
-* theme: winter | summer | autumn (button styles)
-* triggerBy: CSS Selector (open modal by click at them)
-* disableFloatButton: true | false (disable float button)
-* textBoard: custom text at left side
+| Name                    | Type    | Description                                      | Required | Default
+| ----------------------- | ------- | ------------------------------------------------ | -------- | ------------
+| companyName             | String  | Company name                                     | yes      |
+| companyMail             | String  | Company email for sending                        | yes      |
+| companySite             | String  | Company site for email                           | yes      |
+| companyPhone            | String  | Company phone for callback                       | yes      |
+| theme                   | String  | Theme for button styles (winter, summer, autumn) | no       | winter
+| sendToTMService.enabled | Boolean | Enabled send to TM service                       | no       | false
+| sendToTMService.token   | String  | JSON web token                                   | no       | null
+| triggerBy               | String  | CSS Selector for open modal by click at them     | no       |
+| disableFloatButton      | Boolean | Disable float button                             | no       | false
+| textBoard               | String  | Custom text at left side                         | no       | Мы готовы ответить на любые ваши технические вопросы по телефону:
+| title                   | String  | Custom form title                                | no       | Укажите ваши контакты и наш звонок не заставит себя ждать
 
 ## Development
 ```shell

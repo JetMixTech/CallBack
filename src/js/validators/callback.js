@@ -7,13 +7,11 @@ export function validateCallBackForm(data) {
     if (isEmpty(data.customer)) {
         errors.customer = 'Укажите имя';
     }
+
     if (isEmpty(data.phone)) {
         errors.phone = 'Укажите телефон';
     } else if (!phoneRegExp.test(data.phone)) {
         errors.phone = 'Неверный формат';
-    }
-    if (isEmpty(data.time)) {
-        errors.time = 'Укажите время';
     }
 
     return errors;

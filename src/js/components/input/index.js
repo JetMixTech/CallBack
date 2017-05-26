@@ -5,7 +5,7 @@ import MaskedInput from 'react-maskedinput';
 
 import styles from 'styles/blocks/input';
 
-function Input({ type, name, label, meta, placeholder, mask, onChange, required }) {
+const Input = ({ type, name, label, meta, placeholder, mask, onChange, required }) => {
     const inputCN = CN(styles.input, {
         [styles.input_required]: required,
         [styles.input_valid]: meta[name].touched && !meta[name].invalid
@@ -26,7 +26,7 @@ function Input({ type, name, label, meta, placeholder, mask, onChange, required 
             </label>
         </div>
     );
-}
+};
 
 Input.propTypes = {
     type: PropTypes.string,

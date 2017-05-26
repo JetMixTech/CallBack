@@ -9,19 +9,34 @@ class Form extends Component {
         super();
         this.state = {
             fields: {
-                customer: { invalid: true, touched: false, value: '' },
-                phone: { invalid: true, touched: false, value: '' },
-                time: { invalid: true, touched: false, value: '' }
+                customer: { invalid: false, touched: false, value: '' },
+                phone: { invalid: false, touched: false, value: '' },
+                time: { invalid: false, touched: false, value: '' }
             },
             submitting: false,
             disableSubmit: true
         };
-        this.onChange = this.onChange.bind(this);
-        this.onSubmit = this.onSubmit.bind(this);
-        this.renderChildren = this.renderChildren.bind(this);
     }
 
-    onChange(event) {
+    componentDidMount() {
+        this.props.children.forEach((children) => {
+            if (this.state.fields[children.props.name]) {
+                if (children.props.required === true) {
+                    this.setState((prevState) => ({
+                        fields: {
+                            ...prevState.fields,
+                            [children.props.name]: {
+                                ...prevState.fields[children.props.name],
+                                invalid: true
+                            }
+                        }
+                    }));
+                }
+            }
+        });
+    }
+
+    onChange = (event) => {
         const { target: { value, name } } = event;
         const validate = validateCallBackForm({ [name]: value });
         const fields = {
@@ -35,15 +50,15 @@ class Form extends Component {
         const disableSubmit = Object.keys(fields).some((field) => fields[field].invalid);
 
         this.setState({ fields, disableSubmit });
-    }
+    };
 
-    onSubmit(event) {
+    onSubmit = (event) => {
         event.preventDefault();
 
         if (!this.state.disableSubmit) {
             this.props.onSubmit();
         }
-    }
+    };
 
     setSubmitting() {
         this.setState({ submitting: true });
@@ -68,7 +83,7 @@ class Form extends Component {
         this.setState({ fields, disableSubmit: true });
     }
 
-    renderChildren() {
+    renderChildren = () => {
         const { onChange, state: { fields, submitting, disableSubmit }, props: { children } } = this;
 
         return children.map((item, key) => {
@@ -82,7 +97,7 @@ class Form extends Component {
 
             return cloneElement(item, itemProps);
         });
-    }
+    };
 
     render() {
         return (

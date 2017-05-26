@@ -12,7 +12,12 @@ class JMCallBack {
                 ticket: 'https://api.jetmix.su/v1/tickets',
                 sender: 'https://sender.jetmix.su'
             },
+            sendToTMService: {
+                enabled: false,
+                token: null
+            },
             disableFloatButton: false,
+            title: 'Укажите ваши контакты и наш звонок не заставит себя ждать',
             ...config
         };
         this.validateConfig();

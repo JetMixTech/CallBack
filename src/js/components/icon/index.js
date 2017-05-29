@@ -4,11 +4,9 @@ import CN from 'classnames';
 
 import styles from 'styles/blocks/icon';
 
-const Icon = ({ view }) => {
-    return (
-        <i className={ CN(styles.icon, styles[view]) } aria-hidden="true"></i>
-    );
-};
+const Icon = ({ view }) => (
+    <i className={ CN(styles.icon, styles[view]) } aria-hidden="true"></i>
+);
 
 Icon.propTypes = {
     view: PropTypes.string
